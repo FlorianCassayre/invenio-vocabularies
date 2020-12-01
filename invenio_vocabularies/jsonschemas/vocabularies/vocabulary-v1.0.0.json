@@ -11,6 +11,15 @@
       "properties": {
         "title": {
           "type": "string"
+        },
+        "description":  {
+          "type": "object"
+        },
+        "icon": {
+          "type": "string"
+        },
+        "props": {
+          "type": "object"
         }
       }
     }

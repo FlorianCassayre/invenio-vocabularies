@@ -2,7 +2,6 @@
 #
 # This file is part of Invenio.
 # Copyright (C) 2020 CERN.
-# Copyright (C) 2020 Northwestern University.
 #
 # Invenio-Records-Resources is free software; you can redistribute it and/or
 # modify it under the terms of the MIT License; see LICENSE file for more
@@ -12,7 +11,7 @@
 
 from invenio_pidstore.models import PIDStatus
 from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
-from invenio_records.systemfields import ConstantField
+from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.api import Record as RecordBase
 from invenio_records_resources.records.systemfields import IndexField, \
     PIDField, PIDStatusCheckField
@@ -37,6 +36,7 @@ class Vocabulary(RecordBase):
     )
 
     pid = PIDField("id", provider=RecordIdProviderV2)
+    vocabulary_type = ModelField()
 
     conceptpid = PIDField("conceptid", provider=RecordIdProviderV2)
 

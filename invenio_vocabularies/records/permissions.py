@@ -7,4 +7,11 @@
 # modify it under the terms of the MIT License; see LICENSE file for more
 # details.
 
-"""JSONSchema directory."""
+"""Vocabulary permissions."""
+from invenio_records_permissions import RecordPermissionPolicy
+
+
+class PermissionPolicy(RecordPermissionPolicy):
+    """Permission policy."""
+
+    pass

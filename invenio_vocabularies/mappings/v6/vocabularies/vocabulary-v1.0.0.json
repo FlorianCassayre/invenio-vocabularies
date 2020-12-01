@@ -11,16 +11,17 @@
             "title": {
               "type": "text"
             },
-            "type": {
-              "type": "object",
-              "properties": {
-                "type": {
-                  "type": "keyword"
-                },
-                "subtype": {
-                  "type": "keyword"
-                }
-              }
+            "vocabulary_type": {
+              "type": "text"
+            },
+            "description": {
+              "type": "text"
+            },
+            "icon": {
+              "type": "keyword"
+            },
+            "props": {
+              "type": "object"
             }
           }
         },
@@ -30,8 +31,8 @@
         "updated": {
           "type": "date"
         },
-        "expires_at": {
-          "type": "date"
+        "vocabulary_type": {
+          "type": "integer"
         },
         "uuid": {
           "type": "keyword"
