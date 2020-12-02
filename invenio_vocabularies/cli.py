@@ -14,10 +14,10 @@ import json
 import click
 from flask.cli import with_appcontext
 from invenio_db import db
-from invenio_indexer.api import RecordIndexer
 
 from invenio_vocabularies.records.api import Vocabulary
 from invenio_vocabularies.records.models import VocabularyType
+from invenio_vocabularies.records.service import Service
 
 
 @click.group()
@@ -33,10 +33,10 @@ def json_files(filenames):
     """Index JSON-based vocabularies in Elasticsearch."""
     source = "json"
 
+    indexer = Service().indexer
     for filename in filenames:
         click.echo("indexing vocabularies in {}...".format(filename))
         items = load_vocabulary(source, filename)
-        indexer = RecordIndexer()  # TODO is this correct?
         with click.progressbar(items) as bar:
             for item in bar:
                 indexer.index(item)
