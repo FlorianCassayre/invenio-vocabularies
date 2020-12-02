@@ -8,8 +8,9 @@
 
 """Vocabulary API views."""
 
-from invenio_vocabularies.records.resource import VocabularyResource, VocabularyResourceConfig
-from invenio_vocabularies.records.service import ServiceConfig, Service
+from invenio_vocabularies.records.resource import VocabularyResource, \
+    VocabularyResourceConfig
+from invenio_vocabularies.records.service import Service, ServiceConfig
 
 
 def create_blueprints(app):
