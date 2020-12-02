@@ -19,5 +19,4 @@ def create_blueprints(app):
         config=VocabularyResourceConfig,
         service=Service(config=ServiceConfig)
     )
-    app.register_blueprint(resource.as_blueprint(name=name))
-    return app
+    return resource.as_blueprint(name)
