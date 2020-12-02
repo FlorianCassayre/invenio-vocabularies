@@ -105,6 +105,12 @@ setup(
         ],
         "invenio_search.mappings": [
             "vocabularies = invenio_vocabularies.mappings",
+        ],
+        "console_scripts": [
+            "vocabularies = invenio_app.cli:cli"
+        ],
+        "flask.commands": [
+            "load = invenio_vocabularies.cli:load",
         ]
         # TODO: See which of the following we truly need
         # 'invenio_assets.bundles': [],
