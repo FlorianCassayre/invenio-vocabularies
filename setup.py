@@ -88,11 +88,20 @@ setup(
     include_package_data=True,
     platforms="any",
     entry_points={
+        "console_scripts": [
+            "vocabularies = invenio_app.cli:cli",
+        ],
         "invenio_base.apps": [
             "invenio_vocabularies = invenio_vocabularies:InvenioVocabularies",
         ],
         "invenio_base.api_apps": [
             "invenio_vocabularies = invenio_vocabularies:InvenioVocabularies",
+        ],
+        "flask.commands": [
+            "load = invenio_vocabularies.cli:load",
+        ],
+        "invenio_config.module": [
+            "invenio_vocabularies = invenio_vocabularies.config",
         ],
         "invenio_db.model": [
             "vocabulary_model = invenio_vocabularies.vocabularies.models",
@@ -106,12 +115,6 @@ setup(
         "invenio_search.mappings": [
             "vocabularies = invenio_vocabularies.mappings",
         ],
-        "console_scripts": [
-            "vocabularies = invenio_app.cli:cli"
-        ],
-        "flask.commands": [
-            "load = invenio_vocabularies.cli:load",
-        ]
         # TODO: See which of the following we truly need
         # 'invenio_assets.bundles': [],
         # 'invenio_base.api_blueprints': [],
