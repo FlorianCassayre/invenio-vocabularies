@@ -12,7 +12,7 @@
           "type": "string"
         },
         "description":  {
-          "type": "object"
+          "type": "string"
         },
         "icon": {
           "type": "string"
