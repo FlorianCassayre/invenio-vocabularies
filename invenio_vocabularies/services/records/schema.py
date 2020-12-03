@@ -26,6 +26,7 @@ class VocabularyMetadataSchema(Schema):
 
         unknown = EXCLUDE
 
+    id = fields.Str(required=True)
     title = i18n_string
     description = i18n_string
     icon = fields.Str(required=True, allow_none=True)
