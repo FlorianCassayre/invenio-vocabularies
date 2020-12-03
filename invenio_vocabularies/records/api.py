@@ -10,12 +10,14 @@
 """Vocabulary API."""
 from invenio_pidstore.models import PIDStatus
 from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
+from invenio_records.dumpers import ElasticsearchDumper
 from invenio_records.systemfields import ConstantField, ModelField
 from invenio_records_resources.records.api import Record as RecordBase
 from invenio_records_resources.records.systemfields import IndexField, \
     PIDField, PIDStatusCheckField
 
 from . import models
+from .dumper_extensions import VocabularyTypeElasticsearchDumperExt
 
 
 class Vocabulary(RecordBase):
@@ -23,6 +25,8 @@ class Vocabulary(RecordBase):
 
     # Configuration
     model_cls = models.VocabularyMetadata
+
+    dumper = ElasticsearchDumper(extensions=[VocabularyTypeElasticsearchDumperExt()])
 
     # System fields
     schema = ConstantField(
@@ -35,5 +39,5 @@ class Vocabulary(RecordBase):
     )
 
     pid = PIDField("id", provider=RecordIdProviderV2)
-    vocabulary_type = ModelField()
+    vocabulary_type_id = ModelField()
 

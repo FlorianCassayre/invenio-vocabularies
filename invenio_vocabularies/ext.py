@@ -12,7 +12,8 @@ from flask_babelex import gettext as _
 
 from . import config
 from .resources.records.resource import VocabularyResource, \
-    VocabularyResourceConfig
+    VocabularyResourceConfig, VocabularyTypeResource, \
+    VocabularyTypeResourceConfig
 from .services.records.service import Service, ServiceConfig
 
 
@@ -32,6 +33,11 @@ class InvenioVocabularies(object):
             service=Service(config=ServiceConfig)
         )
         app.register_blueprint(resource.as_blueprint('vocabularies'))
+        resource = VocabularyTypeResource(
+            config=VocabularyTypeResourceConfig,
+            service=Service(config=ServiceConfig)
+        )
+        app.register_blueprint(resource.as_blueprint('vocabularies_types'))
         app.extensions["invenio-vocabularies"] = self
 
 

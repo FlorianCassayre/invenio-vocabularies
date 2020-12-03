@@ -16,7 +16,7 @@ from invenio_records.models import RecordMetadataBase
 class VocabularyType(db.Model):
     """Vocabulary type model."""
 
-    __tablename__ = "vocabulary_type"
+    __tablename__ = "vocabularies_types"
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String, unique=True)
 
@@ -28,6 +28,7 @@ class VocabularyMetadata(db.Model, RecordMetadataBase):
 
     pid = db.Column(db.String)
 
-    vocabulary_type = db.Column(
-        db.Integer, db.ForeignKey("vocabulary_type.id")
+    vocabulary_type_id = db.Column(
+        db.Integer, db.ForeignKey(VocabularyType.id)
     )
+    vocabulary_type = db.relationship(VocabularyType)

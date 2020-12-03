@@ -19,4 +19,4 @@ class VocabularySchema(RecordSchema):
 
         unknown = EXCLUDE
 
-    vocabulary_type = fields.Integer()
+    vocabulary_type_id = fields.Integer()

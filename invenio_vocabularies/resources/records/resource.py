@@ -8,10 +8,13 @@
 # details.
 
 """Vocabulary resource."""
+from flask import g
+from flask_resources.context import resource_requestctx
 from invenio_records_resources.resources import RecordResource, \
     RecordResourceConfig
 
-from invenio_vocabularies.resources.records.schema import VocabularyLinksSchema, \
+from invenio_vocabularies.resources.records.schema import \
+    VocabularyLinksSchema, \
     SearchLinksSchema
 
 
@@ -27,7 +30,39 @@ class VocabularyResourceConfig(RecordResourceConfig):
     }
 
 
+class VocabularyTypeResourceConfig(RecordResourceConfig):
+    """Custom record resource configuration."""
+
+    list_route = "/vocabularies/<vocabulary_type>/"
+    item_route = f"{list_route}/<pid_value>"
+
+    links_config = {
+        "record": VocabularyLinksSchema,
+        "search": SearchLinksSchema,
+    }
+
+
 class VocabularyResource(RecordResource):
     """Custom record resource"."""
 
     default_config = VocabularyResourceConfig
+
+
+class VocabularyTypeResource(RecordResource):
+    """Custom record resource"."""
+
+    default_config = VocabularyTypeResourceConfig
+
+    def search(self):
+        """Perform a search over the items."""
+        identity = g.identity
+        params = resource_requestctx.url_args
+        params.update({'vocabulary_type': resource_requestctx.route[
+            "vocabulary_type"], })
+        hits = self.service.search(
+            identity=identity,
+            params=params,
+            links_config=self.config.links_config,
+            es_preference=self._get_es_preference()
+        )
+        return hits.to_dict(), 200
