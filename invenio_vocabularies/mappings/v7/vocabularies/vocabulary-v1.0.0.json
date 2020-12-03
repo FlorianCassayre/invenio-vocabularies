@@ -11,7 +11,7 @@
               "type": "text"
             },
             "vocabulary_type": {
-              "type": "text"
+              "type": "keyword"
             },
             "description": {
               "type": "text"
@@ -31,7 +31,7 @@
           "type": "date"
         },
         "vocabulary_type": {
-          "type": "integer"
+          "type": "keyword"
         },
         "uuid": {
           "type": "keyword"

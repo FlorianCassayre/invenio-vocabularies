@@ -18,7 +18,7 @@ class VocabularyType(db.Model):
 
     __tablename__ = "vocabulary_type"
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String)
+    name = db.Column(db.String, unique=True)
 
 
 class VocabularyMetadata(db.Model, RecordMetadataBase):

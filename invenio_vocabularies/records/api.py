@@ -8,7 +8,6 @@
 # details.
 
 """Vocabulary API."""
-
 from invenio_pidstore.models import PIDStatus
 from invenio_pidstore.providers.recordid_v2 import RecordIdProviderV2
 from invenio_records.systemfields import ConstantField, ModelField
@@ -28,7 +27,7 @@ class Vocabulary(RecordBase):
     # System fields
     schema = ConstantField(
         "$schema",
-        "http://localhost/schemas/vocabularies/vocabulary-v1.0.0.json",
+        "http://127.0.0.1:5000/schemas/vocabularies/vocabulary-v1.0.0.json"
     )
 
     index = IndexField(
@@ -38,6 +37,3 @@ class Vocabulary(RecordBase):
     pid = PIDField("id", provider=RecordIdProviderV2)
     vocabulary_type = ModelField()
 
-    conceptpid = PIDField("conceptid", provider=RecordIdProviderV2)
-
-    is_published = PIDStatusCheckField(status=PIDStatus.REGISTERED)

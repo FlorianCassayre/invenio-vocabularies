@@ -26,11 +26,11 @@ class ServiceConfig(RecordServiceConfig):
     search_facets_options = {
         "aggs": {
             "type": {
-                "terms": {"field": "metadata.type.type"},
+                "terms": {"field": "metadata.vocabulary_type"},
             }
         },
         "post_filters": {
-            "type": terms_filter("metadata.type.type"),
+            "type": terms_filter("metadata.vocabulary_type"),
         },
     }
 
