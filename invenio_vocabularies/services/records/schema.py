@@ -8,7 +8,7 @@
 
 """Vocabulary service schema."""
 from invenio_records_resources.services.records.schema import RecordSchema
-from marshmallow import EXCLUDE, fields, INCLUDE
+from marshmallow import EXCLUDE, fields
 
 
 class VocabularySchema(RecordSchema):
@@ -17,6 +17,6 @@ class VocabularySchema(RecordSchema):
     class Meta:
         """Meta class to reject unknown fields."""
 
-        unknown = INCLUDE
+        unknown = EXCLUDE
 
     vocabulary_type = fields.Integer()

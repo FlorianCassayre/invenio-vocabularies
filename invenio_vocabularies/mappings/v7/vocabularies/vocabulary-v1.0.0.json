@@ -10,9 +10,6 @@
             "title": {
               "type": "text"
             },
-            "vocabulary_type": {
-              "type": "keyword"
-            },
             "description": {
               "type": "text"
             },

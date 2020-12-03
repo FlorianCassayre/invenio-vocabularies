@@ -21,6 +21,9 @@
           "type": "object"
         }
       }
+    },
+    "vocabulary_type": {
+      "type": "integer"
     }
   }
 }

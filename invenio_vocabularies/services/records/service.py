@@ -12,6 +12,7 @@ from invenio_records_resources.services import RecordService, \
     RecordServiceConfig
 from invenio_records_resources.services.records.search import terms_filter
 
+from .components import VocabularyTypeComponent
 from .schema import VocabularySchema
 from ...records.api import Vocabulary
 from .permissions import PermissionPolicy
@@ -33,6 +34,10 @@ class ServiceConfig(RecordServiceConfig):
             "vocabulary_type": terms_filter("vocabulary_type"),
         },
     }
+
+    components = RecordServiceConfig.components + [
+        VocabularyTypeComponent,
+    ]
 
 
 class Service(RecordService):
