@@ -1,9 +1,8 @@
+from invenio_records_resources.resources import search_link_params, \
+    search_link_when
 from marshmallow import Schema
 from marshmallow_utils.fields import Link
 from uritemplate import URITemplate
-
-from invenio_records_resources.resources import search_link_params, \
-    search_link_when
 
 
 class VocabularyLinksSchema(Schema):

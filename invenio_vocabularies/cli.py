@@ -68,13 +68,6 @@ def load_vocabulary(source, filename):
                 # ensure each item is of the same type
                 assert item_data["type"] == vocabulary_type_name
 
-                # === TODO Remove the following onces i18n is implemented ===
-                def no_i18n(field):
-                    item_data[field] = item_data[field].get("en", None)
-                no_i18n("title")
-                no_i18n("description")
-                # ======
-
                 vocabulary_item_record = service.create(
                     identity=identity, data={"metadata": item_data, "vocabulary_type": vocabulary_type.id}
                 )
