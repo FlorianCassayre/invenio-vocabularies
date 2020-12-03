@@ -11,7 +11,7 @@
 from invenio_records_resources.resources import RecordResource, \
     RecordResourceConfig
 
-from invenio_vocabularies.records.schema import VocabularyLinksSchema, \
+from invenio_vocabularies.resources.records.schema import VocabularyLinksSchema, \
     SearchLinksSchema
 
 

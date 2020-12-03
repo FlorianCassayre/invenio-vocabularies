@@ -18,7 +18,7 @@ from invenio_db import db
 from invenio_vocabularies.records.api import Vocabulary
 from invenio_vocabularies.records.models import VocabularyMetadata, \
     VocabularyType
-from invenio_vocabularies.records.service import Service
+from invenio_vocabularies.services.records.service import Service
 
 
 @click.group()
@@ -56,7 +56,8 @@ def load_vocabulary(source, filename):
         db.session.add(vocabulary_type)
         for item_data in json_array:
             assert item_data["type"] == vocabulary_type_name
-            vocabulary_item = Vocabulary.create(item_data, vocabulary_type=vocabulary_type.id)
+            vocabulary_item = Vocabulary.create(
+                item_data, vocabulary_type=vocabulary_type.id)
             records.append(vocabulary_item)
     db.session.commit()
     return records

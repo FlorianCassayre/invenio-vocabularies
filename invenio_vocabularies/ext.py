@@ -11,8 +11,9 @@
 from flask_babelex import gettext as _
 
 from . import config
-from .records.resource import VocabularyResource, VocabularyResourceConfig
-from .records.service import Service, ServiceConfig
+from .resources.records.resource import VocabularyResource, \
+    VocabularyResourceConfig
+from .services.records.service import Service, ServiceConfig
 
 
 class InvenioVocabularies(object):

@@ -27,6 +27,7 @@ class VocabularyMetadata(db.Model, RecordMetadataBase):
     __tablename__ = "vocabularies_metadata"
 
     pid = db.Column(db.String)
+
     vocabulary_type = db.Column(
         db.Integer, db.ForeignKey("vocabulary_type.id")
     )

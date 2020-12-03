@@ -10,10 +10,10 @@
 
 from invenio_records_resources.services import RecordService, \
     RecordServiceConfig
-from invenio_records_resources.services.records.schema import RecordSchema
 from invenio_records_resources.services.records.search import terms_filter
 
-from .api import Vocabulary
+from .schema import VocabularySchema
+from ...records.api import Vocabulary
 from .permissions import PermissionPolicy
 
 
@@ -22,15 +22,15 @@ class ServiceConfig(RecordServiceConfig):
 
     permission_policy_cls = PermissionPolicy
     record_cls = Vocabulary
-    schema = RecordSchema
+    schema = VocabularySchema
     search_facets_options = {
         "aggs": {
-            "type": {
-                "terms": {"field": "metadata.vocabulary_type"},
+            "vocabulary_type": {
+                "terms": {"field": "vocabulary_type"},
             }
         },
         "post_filters": {
-            "type": terms_filter("metadata.vocabulary_type"),
+            "vocabulary_type": terms_filter("vocabulary_type"),
         },
     }
 
