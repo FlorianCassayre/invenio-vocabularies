@@ -33,7 +33,7 @@ class Vocabulary(RecordBase):
     # System fields
     schema = ConstantField(
         "$schema",
-        "http://127.0.0.1:5000/schemas/vocabularies/vocabulary-v1.0.0.json"
+        "http://127.0.0.1:5000/schemas/vocabularies/vocabulary-v1.0.0.json",
     )
 
     index = IndexField(

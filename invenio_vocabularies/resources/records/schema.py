@@ -24,8 +24,8 @@ class VocabularyLinksSchema(Schema):
     self_ = Link(
         template=URITemplate("/api/vocabularies/{pid_value}"),
         permission="read",
-        params=lambda record: {'pid_value': record.pid.pid_value},
-        data_key="self"  # To avoid using self since is python reserved key
+        params=lambda record: {"pid_value": record.pid.pid_value},
+        data_key="self",  # To avoid using self since is python reserved key
     )
 
 
@@ -43,11 +43,11 @@ class SearchLinksSchema(Schema):
         template=URITemplate("/api/vocabularies{?params*}"),
         permission="search",
         params=search_link_params(-1),
-        when=search_link_when(-1)
+        when=search_link_when(-1),
     )
     next = Link(
         template=URITemplate("/api/vocabularies{?params*}"),
         permission="search",
         params=search_link_params(+1),
-        when=search_link_when(+1)
+        when=search_link_when(+1),
     )
