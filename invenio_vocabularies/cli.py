@@ -39,7 +39,10 @@ def json_files(filenames):
     for filename in filenames:
         click.echo("creating vocabularies in {}...".format(filename))
         items = load_vocabulary(source, filename)
-        click.echo("created {} vocabulary items successfully".format(len(items)))
+        click.echo(
+            "created {} vocabulary items successfully"
+            .format(len(items))
+        )
 
 
 def load_vocabulary(source, filename):
@@ -69,8 +72,10 @@ def load_vocabulary(source, filename):
                 assert item_data["type"] == vocabulary_type_name
 
                 vocabulary_item_record = service.create(
-                    identity=identity, data={"metadata": item_data, "vocabulary_type": vocabulary_type.id}
+                    identity=identity, data={
+                        "metadata": item_data,
+                        "vocabulary_type_id": vocabulary_type.id
+                    }
                 )
-                db.session.commit()
                 records.append(vocabulary_item_record)
     return records

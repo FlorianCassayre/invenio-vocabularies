@@ -44,4 +44,3 @@ class Service(RecordService):
     """Mock service."""
 
     default_config = ServiceConfig
-
