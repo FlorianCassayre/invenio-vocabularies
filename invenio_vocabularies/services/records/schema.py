@@ -10,6 +10,7 @@
 from invenio_records_resources.services.records.schema import RecordSchema
 from marshmallow import EXCLUDE, Schema, fields, validate
 
+
 i18n_string = fields.Dict(
     required=True,
     keys=fields.Str(validate=validate.Regexp("^[a-z]{2}$")),

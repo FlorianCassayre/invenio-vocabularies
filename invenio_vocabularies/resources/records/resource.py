@@ -52,6 +52,3 @@ class VocabularyResource(RecordResource):
             es_preference=self._get_es_preference(),
         )
         return hits.to_dict(), 200
-
-    def read(self):
-        return super().read()
