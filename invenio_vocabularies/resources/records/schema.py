@@ -24,7 +24,7 @@ def vocabularies_search_link_params(page_offset):
             k: v for k, v in search_dict.items() if not k.startswith('_')
         }
         params['page'] += page_offset
-        vocabulary_type = params.pop('vocabulary_type')
+        vocabulary_type = params.get('vocabulary_type')
         return {'params': params, 'vocabulary_type': vocabulary_type}
     return _inner
 
@@ -39,7 +39,7 @@ class VocabularyLinksSchema(Schema):
             "/api/vocabularies/{vocabulary_type}/{pid_value}"),
         permission="read",
         params=lambda record: {"pid_value": record.pid.pid_value,
-                               "vocabulary_type": record["vocabulary_type"]},
+                               "vocabulary_type": record.vocabulary_type or record.get('vocabulary_type')},
         data_key="self",  # To avoid using self since is python reserved key
     )
 

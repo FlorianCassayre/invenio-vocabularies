@@ -41,5 +41,6 @@ class VocabularySchema(RecordSchema):
         unknown = EXCLUDE
 
     vocabulary_type_id = fields.Integer()
+    vocabulary_type = fields.Str()
 
     metadata = fields.Nested(VocabularyMetadataSchema, required=True)
