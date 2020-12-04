@@ -48,7 +48,6 @@ class Service(RecordService):
     def search(self, identity, params=None, links_config=None,
                es_preference=None, **kwargs):
         """Search for records matching the vocabulary type."""
-
         self.require_permission(identity, "search")
 
         params = params or {}

@@ -70,7 +70,7 @@ def load_vocabulary(source, filename):
                 copied_data = {}
                 for key in item_data:
                     value = item_data[key]
-                    if key != "type" and value is not None:
+                    if key != "type" and key != "id" and value is not None:
                         copied_data[key] = value
 
                 vocabulary_item_record = service.create(

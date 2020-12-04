@@ -34,7 +34,7 @@ FormatLocalizedText = partial(LocalizedText, locale=get_locale)
 class PresentationVocabularySchema(Schema):
     """Vocabulary presentation."""
 
-    id = fields.Str(attribute="metadata.id")
+    id = fields.Str(attribute="id")
     type = fields.Str(attribute="vocabulary_type")
     subtype = fields.Str()  # TODO what is this?
     title_l10n = FormatLocalizedText(attribute="metadata.title")

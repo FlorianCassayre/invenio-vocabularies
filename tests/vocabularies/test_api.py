@@ -157,13 +157,13 @@ def test_endpoint_filter(app, db, client, identity, service):
 
     record1 = service.create(
         identity=identity, data=dict(
-            metadata=dict(id="id1"),
+            metadata={},
             vocabulary_type_id=vocabulary_type_1.id
         )
     )
     record2 = service.create(
         identity=identity, data=dict(
-            metadata=dict(id="id2"),
+            metadata={},
             vocabulary_type_id=vocabulary_type_2.id
         )
     )
@@ -174,4 +174,4 @@ def test_endpoint_filter(app, db, client, identity, service):
                      headers={"accept": "application/json"})
     assert res.status_code == 200
     assert res.json["hits"]["total"] == 1
-    assert res.json["hits"]["hits"][0]["id"] == "id1"
+    assert res.json["hits"]["hits"][0]["id"] == record1.id
