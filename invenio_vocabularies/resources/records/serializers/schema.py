@@ -10,7 +10,7 @@
 from functools import partial
 
 from flask_babelex import get_locale
-from marshmallow import Schema, fields, INCLUDE, missing, ValidationError
+from marshmallow import INCLUDE, Schema, fields
 
 
 class LocalizedText(fields.Dict):
@@ -23,6 +23,7 @@ class LocalizedText(fields.Dict):
         raise NotImplementedError  # Unsupported operation
 
     def __init__(self, locale=None, **kwargs):
+        """."""
         fields.Dict.__init__(self, **kwargs)
         self.locale = locale
 

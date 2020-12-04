@@ -15,7 +15,8 @@ from invenio_records_resources.resources import RecordResource, \
 
 from invenio_vocabularies.resources.records.schema import SearchLinksSchema, \
     VocabularyLinksSchema
-from invenio_vocabularies.resources.records.serializers import PresentationJSONSerializer
+from invenio_vocabularies.resources.records.serializers import \
+    PresentationJSONSerializer
 
 
 class VocabularyResourceConfig(RecordResourceConfig):

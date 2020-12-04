@@ -10,8 +10,9 @@
 import json
 
 from flask_resources.serializers import JSONSerializer
-from invenio_vocabularies.resources.records.serializers.schema import PresentationVocabularySchema, \
-    PresentationVocabularyListSchema
+
+from invenio_vocabularies.resources.records.serializers.schema import \
+    PresentationVocabularyListSchema, PresentationVocabularySchema
 
 
 class PresentationJSONSerializer(JSONSerializer):
