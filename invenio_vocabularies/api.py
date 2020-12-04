@@ -10,9 +10,8 @@
 """Vocabulary API."""
 
 from babel import default_locale
+from flask import g
 from flask_babelex import lazy_gettext as _
-from flask_principal import Identity
-from invenio_access import any_user
 
 from invenio_vocabularies.records.api import Vocabulary
 from invenio_vocabularies.services.records.service import Service
@@ -54,19 +53,12 @@ class VocabularyBackend:
 
     def get_all(self, vocabulary_type):
         """Returns all the vocabulary of this type. Potentially costly."""
-        # TODO: any alternative to this?
         service = Service()
-        identity = Identity(1)
-        identity.provides.add(any_user)
-        max_results_count = 10000
         result = service.search(
-            identity,
-            q=f"vocabulary_type:{vocabulary_type}",
-            size=max_results_count
+            g.identity,
+            vocabulary_type=vocabulary_type
         ).to_dict()["hits"]
         hits = result["hits"]
-        if len(hits) < result["total"]:
-            raise Exception("Too many items, can't retrieve all of them")
         return list(map(lambda obj: VocabularyItem(obj['metadata']), hits))
 
     def __init__(self, record_cls):

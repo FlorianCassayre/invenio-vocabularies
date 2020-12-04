@@ -7,7 +7,7 @@
 # details.
 
 """Example service."""
-
+from elasticsearch_dsl import AttrDict
 from invenio_records_resources.services import RecordService, \
     RecordServiceConfig
 from invenio_records_resources.services.records.search import terms_filter
@@ -44,3 +44,35 @@ class Service(RecordService):
     """Mock service."""
 
     default_config = ServiceConfig
+
+    def search(self, identity, params=None, links_config=None,
+               es_preference=None, **kwargs):
+        """Search for records matching the vocabulary type."""
+
+        self.require_permission(identity, "search")
+
+        params = params or {}
+        params.update(kwargs)
+
+        # Create a Elasticsearch DSL
+        search = self.search_request(
+            identity, params, self.record_cls, preference=es_preference)
+
+        # Run components
+        for component in self.components:
+            if hasattr(component, 'search'):
+                search = component.search(identity, search, params)
+
+        # Execute the search
+        search_result = search.scan()
+        hits = []
+        for hit in search_result:
+            record = hit.to_dict()
+            hits.append(self.schema.dump(
+                identity,
+                record,
+                pid=hit.pid,
+                record=record
+            ))
+
+        return AttrDict(dict(hits=dict(hits=hits, total=len(hits))))
